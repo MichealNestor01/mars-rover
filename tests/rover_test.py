@@ -13,3 +13,8 @@ class TestExecute(unittest.TestCase):
 
     def test_move_thrice(self):
         self.assertTrue(execute("MMM") == "0:3:N")
+
+    def test_exceed_north(self):
+        height = 10
+        command = "M" * height
+        self.assertTrue(execute(command, grid_height=height) == "0:0:N")
