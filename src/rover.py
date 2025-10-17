@@ -1,4 +1,8 @@
+import numpy as np
+
 def execute(command: str) -> str:
-    if command == "M":
-        return "0:1:N"
-    return "0:0:N"
+    loc = np.array((0, 0)) # location coordinate, (x, y)
+    for char in command:
+        if char == "M":
+            loc += np.array((0, 1))
+    return f"0:{np.round(loc[1])}:N"
