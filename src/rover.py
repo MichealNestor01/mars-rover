@@ -1,2 +1,2 @@
 def execute(command: str) -> str:
-    return ""
+    return "0:0:N"
