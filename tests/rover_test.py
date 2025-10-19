@@ -19,6 +19,19 @@ class TestExecute(unittest.TestCase):
         command = "M" * height
         self.assertEqual(execute(command, grid_height=height), "0:0:N")
 
+    def test_exceed_south(self):
+        height = 10
+        self.assertEqual(execute("RRM", grid_height=height), "0:9:S")
+
+    def test_exceed_west(self):
+        width = 10 
+        self.assertEqual(execute("LM", grid_width=width), "9:0:W")
+
+    def test_exceed_east(self):
+        width = 10
+        command = "R" + ("M" * width)
+        self.assertEqual(execute(command, grid_width=width), "0:0:E")
+
     def test_turn_right(self):
         self.assertEqual(execute("R"), "0:0:E")
 

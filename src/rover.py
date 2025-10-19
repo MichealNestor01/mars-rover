@@ -42,9 +42,9 @@ def execute(
                 (-sin_theta, cos_theta)
             ))
             rot = rotation_matrix @ rot
-        # check we haven't exceeded the grid
-        if loc[1] >= grid_height:
-            loc[1] %= grid_height
+        #  ensure grid isn't exceeded
+        loc[0] %= grid_width
+        loc[1] %= grid_height
     # to convert the rotation vector into an angle from the y axis
     rot_angle = np.round(np.arctan2(*rot), tolerance)
     orientation = orientation_map.get(rot_angle, "N")
