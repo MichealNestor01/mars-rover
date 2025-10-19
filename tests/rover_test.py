@@ -1,4 +1,5 @@
 import unittest
+import numpy as np
 from src.rover import execute
 
 class TestExecute(unittest.TestCase):
@@ -56,3 +57,18 @@ class TestExecute(unittest.TestCase):
     def test_circle(self):
         self.assertEqual(execute("MRMRMRMR"), "0:0:N")
         
+    def test_obstacle_hit_from_bottom(self):
+        obstacles = [np.array((1.0, 1.0))]
+        self.assertEqual(execute("RMLM", obstacles=obstacles), "O:1:0:N")
+        
+    def test_obstacle_hit_from_left(self):
+        obstacles = [np.array((1.0, 1.0))]
+        self.assertEqual(execute("MRM", obstacles=obstacles), "O:0:1:E")
+
+    def test_obstacle_hit_from_top(self):
+        obstacles = [np.array((1.0, 1.0))]
+        self.assertEqual(execute("MMRMRM", obstacles=obstacles), "O:1:2:S")
+
+    def test_obstacle_hit_from_right(self):
+        obstacles = [np.array((1.0, 1.0))]
+        self.assertEqual(execute("RMMLMLM", obstacles=obstacles), "O:2:1:W")
