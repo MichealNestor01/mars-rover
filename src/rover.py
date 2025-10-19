@@ -3,7 +3,7 @@ import numpy as np
 DEFAULT_GRID_WIDTH = 10
 DEFAULT_GRID_HEIGHT = 10
 DEFAULT_MOVEMENT_MAP = {
-    "M": 1, # by default M command means go in current direction 1 unit
+    "M": 1.0, # by default M command means go in current direction 1 unit
 }
 DEFAULT_ROTATION_MAP = {
     "L": -np.pi/2,
@@ -14,7 +14,7 @@ DEFAULT_ORIENTATION_MAP = { # angle from the y-axis in radians
     0:  "N",
     np.round(np.pi/2, DEFAULT_TOLERANCE):  "E",
     np.round(np.pi, DEFAULT_TOLERANCE): "S",
-    np.round(-np.pi, DEFAULT_TOLERANCE): "S", # accept +-pi to mean south :)
+    np.round(-np.pi, DEFAULT_TOLERANCE): "S", # accept +-pi to mean south 
     np.round(-np.pi/2, DEFAULT_TOLERANCE): "W",
 }
 
@@ -28,8 +28,8 @@ def execute(
         tolerance: int = 5,
     ) -> str:
     '''mars rover kata solution'''
-    loc = np.array((0, 0)) # location vector, (x, y)
-    rot = np.array((0, 1)) # direction vector, starting looking north to (0, 1)
+    loc = np.array((0.0, 0.0)) # location vector, (x, y)
+    rot = np.array((0.0, 1.0)) # direction vector, starting looking north to (0, 1)
     for char in command:
         if char in movement_map:
             loc += movement_map.get(char) * rot
@@ -47,4 +47,6 @@ def execute(
             loc[1] %= grid_height
     # to convert the rotation vector into an angle from the y axis
     rot_angle = np.round(np.arctan2(*rot), tolerance)
-    return f"0:{np.round(loc[1])}:{orientation_map.get(rot_angle, "N")}"
+    orientation = orientation_map.get(rot_angle, "N")
+    x_val, y_val = np.round(loc).astype(int)
+    return f"{x_val}:{y_val}:{orientation}"

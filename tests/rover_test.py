@@ -36,3 +36,10 @@ class TestExecute(unittest.TestCase):
 
     def test_anticlockwise_spin(self):
         self.assertEqual(execute("LLLL"), "0:0:N")
+    
+    def test_move_turn_move(self):
+        self.assertEqual(execute("MRM"), "1:1:E")
+
+    def test_circle(self):
+        self.assertEqual(execute("MRMRMRMR"), "0:0:N")
+        
