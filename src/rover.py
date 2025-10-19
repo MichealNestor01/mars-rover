@@ -14,6 +14,7 @@ DEFAULT_ORIENTATION_MAP = { # angle from the y-axis in radians
     0:  "N",
     np.round(np.pi/2, DEFAULT_TOLERANCE):  "E",
     np.round(np.pi, DEFAULT_TOLERANCE): "S",
+    np.round(-np.pi, DEFAULT_TOLERANCE): "S", # accept +-pi to mean south :)
     np.round(-np.pi/2, DEFAULT_TOLERANCE): "W",
 }
 

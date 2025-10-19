@@ -21,3 +21,18 @@ class TestExecute(unittest.TestCase):
 
     def test_turn_right(self):
         self.assertEqual(execute("R"), "0:0:E")
+
+    def test_turn_right_twice(self):
+        self.assertEqual(execute("RR"), "0:0:S")
+
+    def test_clockwise_spin(self):
+        self.assertEqual(execute("RRRR"), "0:0:N")
+
+    def test_turn_left(self):
+        self.assertEqual(execute("L"), "0:0:W")
+
+    def test_left_twice(self):
+        self.assertEqual(execute("LL"), "0:0:S")
+
+    def test_anticlockwise_spin(self):
+        self.assertEqual(execute("LLLL"), "0:0:N")
